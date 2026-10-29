@@ -3,7 +3,8 @@ export const openApiSpec = {
   info: {
     title: 'Digital Wallet API',
     version: '1.0.0',
-    description: 'Phase 1 authentication, wallet, and transfer endpoints (HS256).',
+    description:
+      'Phase 1 wallet API. Request bodies are validated with Zod; invalid input returns 400 VALIDATION_ERROR.',
   },
   servers: [{ url: 'http://localhost:3000' }],
   components: {
