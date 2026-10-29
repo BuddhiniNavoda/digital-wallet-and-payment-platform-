@@ -1,3 +1,5 @@
+import type { AccessTokenPayload } from '../lib/jwt';
+
 export {};
 
 declare global {
@@ -5,6 +7,7 @@ declare global {
     interface Request {
       requestId: string;
       cookies: Record<string, string | undefined>;
+      user?: AccessTokenPayload;
     }
   }
 }
