@@ -1,11 +1,13 @@
 import { z } from 'zod';
-import { amountSchema } from './walletSchemas';
+import { amountSchema, emailSchema } from './common';
 
-export const sendMoneySchema = z.object({
-  toEmail: z.string().email().transform((v) => v.toLowerCase().trim()),
-  amount: amountSchema,
-  note: z.string().max(200).optional(),
-});
+export const sendMoneySchema = z
+  .object({
+    toEmail: emailSchema,
+    amount: amountSchema,
+    note: z.string().max(200, 'Note must be at most 200 characters').optional(),
+  })
+  .strict();
 
 export const historyQuerySchema = z.object({
   page: z.coerce.number().int().min(1).default(1),
