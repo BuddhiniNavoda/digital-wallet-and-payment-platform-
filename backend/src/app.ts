@@ -10,6 +10,8 @@ import { log } from './lib/logger';
 import { errorHandler } from './middleware/errorHandler';
 import { requestId } from './middleware/requestId';
 import { authRouter } from './routes/authRoutes';
+import { transactionRouter } from './routes/transactionRoutes';
+import { walletRouter } from './routes/walletRoutes';
 
 const app = express();
 
@@ -24,6 +26,8 @@ app.use(express.json({ limit: '100kb' }));
 app.use(cookieParser());
 
 app.use('/auth', authRouter);
+app.use('/wallet', walletRouter);
+app.use('/transactions', transactionRouter);
 
 if (env.nodeEnv !== 'production') {
   app.use('/docs', swaggerUi.serve, swaggerUi.setup(openApiSpec));
